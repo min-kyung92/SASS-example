@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sass example</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+</head>
+<body>
+
+    <section class="container">
+        <article>
+            <h1>Sass(SCSS)</h1>
+            <h2>css preprocessor</h2>
+            <p>
+                Programmatically한 요소를 접목해<br/>
+                방대해지는 css 문서양을 효율적으로 처리 할 수있다
+            </p>
+            <button class="btn btn--dark" type="button">download</button>
+        </article>
+        <button class="btn btn--warning" type="button">lighten($color,$amount)</button>
+        <button class="btn btn--danger" type="button">darken($color,$amount)</button>
+        <article class="round-square round-square__row">
+            <h2>엘고디바이스</h2>
+            <div class="toggle-btn toggle-btn__sucess">
+                <input type="checkbox">
+                <label ></label>
+            </div>
+        </article>
+        <article class="round-square">
+            <div class="toggle-btn toggle-btn__dark">
+                <input type="checkbox" checked>
+                <label></label>
+            </div>
+        </article>
+        <article class="round-square round-square__column">
+            <p>글자크기변경</p>
+            <h3 class="resize-text">CSS preprocessor</h3>
+            <input type="range" max="1.2" min="0.5" step="0.1" onchange="document.querySelector('.resize-text').style.fontSize=this.value + 'rem'"/>
+        </article>
+        <article class="round-square round-square__column">
+            <div class="tabs">
+                <a href="#" class="tabs-item is-selected">Tab 1</a>
+                <a href="#" class="tabs-item">Tab 2</a>
+                <a href="#" class="tabs-item">Tab 3</a>
+              </div>
+            <div class="tabs_img">
+                <img src="../sass_tab01.jfif" />
+            </div>    
+        </article>
+        <article class="round-square">
+            <ul>
+                <li class="tag">
+                   <a href="#">@mixin</a>
+                </li>
+                <li class="tag">
+                   <a href="#">@each</a>
+                </li>
+                <li class="tag">
+                   <a href="#">@if</a>
+                </li>
+                <li class="tag">
+                   <a href="#">@import</a>
+                </li>
+              </ul>
+        </article>
+        <article class="round-square serch-input">
+            <div class="formCollapsed">
+                <div class="input formCollapsed-item formCollapsed-itemPrimary">
+                  <input id="test8" placeholder="검색" type="text">
+                </div>
+                <button class="formCollapsed-item button button-primary">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
+        </article>
+        <article>
+            <div class="loadingSpinner">
+                <span class="loadingSpinner-inner"></span>
+                <span class="loadingSpinner-inner"></span>
+                <span class="loadingSpinner-inner"></span>
+                <span class="loadingSpinner-inner"></span>
+              </div>
+        </article>
+    </section>
+      
+    <script src="../js/wheel.js"></script>
+    <script src="../js/active.js"></script>
+</body>
+</html>

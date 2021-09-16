@@ -1,0 +1,274 @@
+/*
+create by minkyung
+sass(SCSS) parallax page code
+*/
+//import font-family
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Sora:wght@200;600&display=swap');
+//https://sierra-library.github.io/
+@import '../../node_modules/sierra-library/lib/index';
+//mixin 
+@import "mixin";
+
+//color variables
+$danger : #f16765;
+$warning : #fcc949;
+$sucess : #2ad362;
+$blue : #8dceca;
+$dark : #333;
+
+//color-data setting
+$colors-data: (
+  danger: $danger,
+  warning: $warning,
+  sucess: $sucess,
+  blue: $blue,
+  dark: $dark
+);
+
+html, body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background: #fafafa;
+  overflow: auto;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  &, * {
+    transform-style: preserve-3d;
+    margin: 0;
+    padding: 0;
+    @include font;
+  }
+}
+
+.round-square{
+  @include box;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 20px;
+  &__row {
+    @include flex(row, center ,center );
+  }
+  &__column {
+    @include flex(column, center ,center );
+  }
+  &.serch-input{
+    width: 30vh;
+  }
+  >h2{
+    padding-right: 40px;
+    white-space: nowrap;
+  }
+}
+
+.btn{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 40px;
+  border-radius: 20px;
+  color: #fff;
+  @each $color, $order in $colors-data {
+    @if $color == danger {
+      &--#{$color} {
+        background: $order;
+        &:hover{
+          background: darken($order, 10%);
+        }
+      }
+    }
+    @else if ($color == warning or $color == dark ) {
+      &--#{$color} {
+        background: $order;
+        &:hover{
+          background: lighten($order, 10%);
+        }
+      }
+    }
+  }
+}
+
+/*toggle button*/ 
+.toggle-btn{
+  position: relative;
+  @include flex(row ,center ,center);
+  label{
+    width: 80px;
+    height: 30px;
+    background: #ccc;
+    position: relative;
+    display: inline-block;
+    border-radius: 40px;
+    transition-duration: .3s;
+    &:after{
+      @include box;
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      left: 0;
+      top: -6px;
+      z-index: 2;
+      background: #ededed;
+      transition-duration: .3s;
+    }
+  }
+  input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+    &:checked + label{
+      &:after{
+        left: 40px;
+      }
+    }
+  }  
+  //toggle-btn 색상적용
+  @each $color, $order in $colors-data {
+    @if ($color == sucess or $color == dark ) {
+      &__#{$color} {
+        input:checked + label{
+          background: $order;
+          &:after{
+            background: lighten($order, 10%);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+/*parallax*/
+.container {
+  padding: 10%;
+  max-width: 40em;
+  margin: auto;
+  > * {
+    position: absolute;
+  }
+  &>:nth-child(1) {
+    @include parallax(.4);
+    top: 40vh;
+    left: 10vh;
+    >p{
+      margin-bottom: 20px;
+    }
+  }
+  &>:nth-child(2) {
+    @include parallax(.2);
+    top: 30vh;
+    left: 62vh;
+  }
+  &>:nth-child(3) {
+    @include parallax(.3);
+    top: 25vh;
+    left: 80vh;
+  }
+  &>:nth-child(4) {
+    @include parallax(.1);
+    top: 40vh;
+    left: 62vh;
+  }
+  &>:nth-child(5) {
+    @include parallax(-.2);
+    top: 55vh;
+    left: 71vh;
+    padding: 40px 20px;
+  }
+  &>:nth-child(6) {
+    @include parallax(.4);
+    top: 61vh;
+    left: 70vh;
+  }
+  &>:nth-child(7) {
+    @include parallax(-.2);
+    transform: scale(1.5);
+    top: 35vh;
+    left: 130vh;
+  }
+  &>:nth-child(8) {
+    @include parallax(-.1);
+    top: 40vh;
+    left: 195vh;
+  }
+  &>:nth-child(9) {
+    @include parallax(.2);
+    top: 74vh;
+    left: 147vh;
+  }
+  &>:nth-child(10) {
+    @include parallax(-.5);
+    top: 60vh;
+    left: 110vh;
+  }
+}
+
+h1 {
+  @include font(2.6rem,600);
+}
+
+h2{
+  margin: 10px 0;
+}
+
+h3{
+  @include font(1rem,600);
+  white-space: nowrap;
+}
+
+p{
+  font-size: 12px;
+  width: 100%;
+}
+
+/*sierra costom*/
+.tag{
+  margin: 16px;
+}
+
+.tabs{
+  display: flex;
+  & + &_img{
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+}
+
+.formCollapsed{
+  margin-bottom: 0;
+}
+
+.tabs-item.is-selected{
+  border-bottom: 3px solid $blue;
+  color: $blue;
+}
+
+.tabs-item:hover{
+  color: $blue;
+}
+
+.button{
+  background-color: $sucess;
+}
+
+.loadingSpinner-inner{
+  background-color: $warning;
+}
+
+a{
+  color: $dark;
+}
